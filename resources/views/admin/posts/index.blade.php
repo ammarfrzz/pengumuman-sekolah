@@ -8,179 +8,231 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-body: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --primary: #3b82f6;
-            --primary-hover: #2563eb;
-            --danger: #ef4444;
-            --danger-hover: #dc2626;
-            --success: #10b981;
-            --border: #e2e8f0;
-        }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            padding: 24px;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #ffffff;
+            color: #111827;
+            min-height: 100vh;
         }
-        .container {
+        .header-nav {
+            border-bottom: 1px solid #e5e7eb;
+            background: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .nav-inner {
             max-width: 1000px;
             margin: 0 auto;
-        }
-        .header {
+            padding: 14px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--border);
         }
-        .header-title h1 {
-            font-size: 24px;
+        .brand-group {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+        }
+        .brand-name {
+            font-size: 16px;
             font-weight: 700;
-            color: #1e293b;
+            color: #111827;
         }
-        .header-title p {
-            color: var(--text-muted);
+        .role-pill {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #1e40af;
+            background: #eff6ff;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .nav-link {
+            font-size: 14px;
+            font-weight: 500;
+            color: #4b5563;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #1e3a8a;
+        }
+        .btn-logout {
+            background: none;
+            border: 1px solid #e5e7eb;
+            color: #4b5563;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.15s;
+        }
+        .btn-logout:hover {
+            color: #b91c1c;
+            border-color: #fca5a5;
+            background: #fef2f2;
+        }
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .page-header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #111827;
+        }
+        .page-header p {
+            color: #6b7280;
             font-size: 14px;
             margin-top: 4px;
         }
-        .nav-actions {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-        .btn {
+        .btn-add {
+            background-color: #1e3a8a;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 9px 16px;
+            border-radius: 6px;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            padding: 9px 16px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            border: 1px solid transparent;
-            transition: all 0.2s;
+            transition: background-color 0.15s;
         }
-        .btn-primary {
-            background-color: var(--primary);
-            color: #ffffff;
-        }
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
-        }
-        .btn-outline {
-            background-color: #ffffff;
-            color: var(--text-main);
-            border-color: var(--border);
-        }
-        .btn-outline:hover {
-            background-color: #f1f5f9;
-        }
-        .btn-sm {
-            padding: 5px 10px;
-            font-size: 13px;
-            border-radius: 6px;
-        }
-        .btn-danger-sm {
-            background-color: #fee2e2;
-            color: #b91c1c;
-            border: none;
-        }
-        .btn-danger-sm:hover {
-            background-color: #fca5a5;
+        .btn-add:hover {
+            background-color: #172554;
         }
         .alert-success {
-            background-color: #ecfdf5;
-            color: #065f46;
+            background-color: #f0fdf4;
+            border-left: 3px solid #16a34a;
+            color: #15803d;
             padding: 12px 16px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border: 1px solid #a7f3d0;
-            font-size: 14px;
+            font-size: 13px;
+            margin-bottom: 24px;
         }
-        .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            border: 1px solid var(--border);
+        .table-wrap {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
             overflow: hidden;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            text-align: left;
             font-size: 14px;
+            text-align: left;
         }
         th {
-            background: #f8fafc;
-            color: var(--text-muted);
+            background-color: #f9fafb;
+            color: #4b5563;
             font-weight: 600;
-            padding: 14px 18px;
-            border-bottom: 1px solid var(--border);
+            padding: 12px 18px;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 13px;
         }
         td {
             padding: 14px 18px;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid #f3f4f6;
             vertical-align: middle;
         }
         tr:last-child td {
             border-bottom: none;
         }
         tr:hover td {
-            background-color: #f8fafc;
+            background-color: #fcfcfc;
         }
         .post-title {
             font-weight: 600;
-            color: #1e293b;
+            color: #111827;
         }
         .post-date {
-            color: var(--text-muted);
+            color: #6b7280;
             font-size: 13px;
         }
         .action-cell {
             display: flex;
-            gap: 8px;
+            gap: 12px;
             align-items: center;
         }
         .action-link {
             text-decoration: none;
-            color: var(--primary);
+            color: #1e40af;
             font-weight: 500;
             font-size: 13px;
-            padding: 4px 8px;
-            border-radius: 4px;
-            transition: background 0.2s;
         }
         .action-link:hover {
-            background: #eff6ff;
+            text-decoration: underline;
         }
-        .empty-state {
+        .action-link-edit {
+            color: #b45309;
+        }
+        .btn-delete {
+            background: none;
+            border: none;
+            color: #dc2626;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            font-family: inherit;
+            padding: 0;
+        }
+        .btn-delete:hover {
+            text-decoration: underline;
+        }
+        .empty-text {
             text-align: center;
-            padding: 40px 20px;
-            color: var(--text-muted);
+            padding: 36px;
+            color: #9ca3af;
+            font-size: 14px;
         }
-        .pagination-container {
-            margin-top: 16px;
+        .pagination-wrap {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="header-title">
+    <header class="header-nav">
+        <div class="nav-inner">
+            <div class="brand-group">
+                <span class="brand-name">Portal Sekolah</span>
+                <span class="role-pill">Admin</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="{{ route('admin.dashboard') }}" class="nav-link">Dashboard</a>
+                <a href="{{ route('admin.posts.index') }}" class="nav-link active">Kelola Informasi</a>
+                <form action="{{ route('logout') }}" method="POST" style="margin: 0;">
+                    @csrf
+                    <button type="submit" class="btn-logout">Keluar</button>
+                </form>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="page-header">
+            <div>
                 <h1>Daftar Informasi</h1>
-                <p>Kelola semua pengumuman dan berita sekolah</p>
+                <p>Kelola semua publikasi pengumuman dan edaran akademik</p>
             </div>
-            <div class="nav-actions">
-                <a href="{{ route('admin.dashboard') }}" class="btn btn-outline">&larr; Dashboard</a>
-                <a href="{{ route('admin.posts.create') }}" class="btn btn-primary">+ Tambah Informasi</a>
-            </div>
+            <a href="{{ route('admin.posts.create') }}" class="btn-add">+ Buat Pengumuman</a>
         </div>
 
         @if(session('success'))
@@ -189,12 +241,12 @@
             </div>
         @endif
 
-        <div class="card">
+        <div class="table-wrap">
             <table>
                 <thead>
                     <tr>
                         <th style="width: 50%;">Judul Informasi</th>
-                        <th style="width: 25%;">Tanggal Dibuat</th>
+                        <th style="width: 25%;">Tanggal Publikasi</th>
                         <th style="width: 25%;">Aksi</th>
                     </tr>
                 </thead>
@@ -210,19 +262,19 @@
                             <td>
                                 <div class="action-cell">
                                     <a href="{{ route('admin.posts.show', $post) }}" class="action-link">Lihat</a>
-                                    <a href="{{ route('admin.posts.edit', $post) }}" class="action-link" style="color: #d97706;">Edit</a>
+                                    <a href="{{ route('admin.posts.edit', $post) }}" class="action-link action-link-edit">Edit</a>
                                     <form action="{{ route('admin.posts.destroy', $post) }}" method="POST" style="margin: 0;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn-danger-sm btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus informasi ini?')">Hapus</button>
+                                        <button type="submit" class="btn-delete" onclick="return confirm('Apakah Anda yakin ingin menghapus informasi ini?')">Hapus</button>
                                     </form>
                                 </div>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="3" class="empty-state">
-                                Belum ada informasi yang dipublikasikan.
+                            <td colspan="3" class="empty-text">
+                                Belum ada pengumuman yang ditambahkan.
                             </td>
                         </tr>
                     @endforelse
@@ -231,10 +283,10 @@
         </div>
 
         @if($posts->hasPages())
-            <div class="pagination-container">
+            <div class="pagination-wrap">
                 {{ $posts->links() }}
             </div>
         @endif
-    </div>
+    </main>
 </body>
 </html>
